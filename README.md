@@ -2,7 +2,7 @@
  V1.0.0 \ - App Release
  V1.1.0 \ - Adaugare Text animat
  V1.2.0 \ - Adaugare Paragraf integrat cu animatia Textului
- V1.2.1 \ - Posibil bug la integrarea celor doua
+ V1.2.1  - Posibil bug la integrarea celor doua
  
 
 
