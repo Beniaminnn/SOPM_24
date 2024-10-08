@@ -1,3 +1,8 @@
+# Versions
+## V1.0.0 - App Release
+## V1.1.0 - Adaugare Text animat, paragraf de demonstrare
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
