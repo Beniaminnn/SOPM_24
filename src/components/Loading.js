@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import './Loading.css'; // Asigură-te că ai acest fișier CSS
+// src/components/Loading.js
+import React from 'react';
+import { useSpring, animated } from '@react-spring/web'; // Folosește @react-spring/web
 
-function Loading() {
-    const [progress, setProgress] = useState(0); // Inițializare progres
-
-    useEffect(() => {
-        // Simulează progresul în fiecare 30ms
-        const interval = setInterval(() => {
-            setProgress((prev) => (prev < 100 ? prev + 1 : 100)); // Crește progresul cu 1% până la 100%
-        }, 30);
-
-        return () => clearInterval(interval); // Curăță intervalul
-    }, []);
+const Loading = () => {
+    const props = useSpring({
+        from: { width: '0%' },
+        to: { width: '100%' },
+        config: { duration: 2000 },
+        reset: true,
+        onRest: () => { console.log('Loading Complete!'); },
+    });
 
     return (
-        <div className="loading-container">
-            <div className="loading-bar">
-                <div className="loading-progress" style={{ width: `${progress}%` }} />
-            </div>
-            <p>{progress}%</p> {/* Afișează procentul de încărcare */}
+        <div style={{ width: '100%', background: '#e0e0e0', borderRadius: '5px', overflow: 'hidden' }}>
+            <animated.div style={{
+                ...props,
+                height: '20px',
+                background: '#3b82f6',
+            }} />
         </div>
     );
-}
+};
 
 export default Loading;
