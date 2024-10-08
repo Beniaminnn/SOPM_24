@@ -1,5 +1,5 @@
 # Versions
-Site de citit articole online. \__
+Site de citit articole online. \
  V1.0.0 - App Release \
  V1.1.0 - Adaugare Text animat \
  V1.2.0 - Adaugare Paragraf integrat cu animatia Textului \
