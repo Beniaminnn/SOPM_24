@@ -2,18 +2,42 @@
 .todo-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
     margin: 5px 0;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.todo-item.completed {
-    text-decoration: line-through;
-    color: gray;
+.todo-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-text {
+    flex-grow: 1;
+    cursor: pointer;
 }
 
 .task-date {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: #888;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+button:hover {
+    color: #c0392b;
+}
+
+img {
+    width: 20px; /* Dimensiunea iconiței */
+    height: 20px;
 }

@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95d2ae98-0cc7-466f-b4b5-f14d3587f961" name="Changes" comment="V1.0 = generat structura proiectului">
-      <change afterPath="$PROJECT_DIR$/src/components/to_do_item/ToDoItem.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="95d2ae98-0cc7-466f-b4b5-f14d3587f961" name="Changes" comment="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data">
+      <change afterPath="$PROJECT_DIR$/src/assets/trash.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/to_do_item/ToDoItem.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/to_do_item/ToDoItem.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/to_do_item/ToDoItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/to_do_item/ToDoItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/to_do_item/ToDoItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useLocalStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useLocalStorage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +71,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.npm start.executor": "Run",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -126,7 +124,8 @@
       <workItem from="1730738681173" duration="266000" />
       <workItem from="1730739137602" duration="707000" />
       <workItem from="1730739864525" duration="799000" />
-      <workItem from="1730740708832" duration="1693000" />
+      <workItem from="1730740708832" duration="2559000" />
+      <workItem from="1730815679253" duration="911000" />
     </task>
     <task id="LOCAL-00001" summary="V1.0 = generat structura proiectului">
       <option name="closed" value="true" />
@@ -152,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730740083566</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data">
+      <option name="closed" value="true" />
+      <created>1730805228288</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730805228288</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +190,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="V1.0 = generat structura proiectului" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.0 = generat structura proiectului" />
+    <MESSAGE value="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data" />
   </component>
 </project>

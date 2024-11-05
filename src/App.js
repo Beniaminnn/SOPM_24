@@ -1,65 +1,67 @@
-// App.js
-import React, { useState, useEffect } from 'react';
-import ToDoList from './components/to_do_list/ToDoList';
-import './App.css';
+// src/App.js
+import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import ToDoList from "./components/to_do_list/ToDoList"; // Asigură-te că calea este corectă
+import "./App.css";
 
-// Funcție pentru a formata data într-un format de tip YYYY-MM-DD HH:MM
-const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
-};
+let idCounter = 0; // Un contor pentru generarea id-urilor unice
 
 function App() {
-    const [tasks, setTasks] = useState(() => {
-        const savedTasks = localStorage.getItem("tasks");
-        return savedTasks ? JSON.parse(savedTasks) : [];
-    });
-
-    const addTask = (text) => {
-        const newTask = {
-            text,
-            completed: false,
-            date: formatDate(new Date()) // Adaugă data curentă la sarcină
-        };
-        setTasks([...tasks, newTask]);
-    };
-
-    const removeTask = (index) => {
-        setTasks(tasks.filter((_, i) => i !== index));
-    };
-
-    const toggleCompleteTask = (index) => {
-        setTasks(tasks.map((task, i) =>
-            i === index ? { ...task, completed: !task.completed } : task
-        ));
-    };
+    const [tasks, setTasks] = useState([]);
+    const [currentTime, setCurrentTime] = useState(new Date());
+    const [newTaskText, setNewTaskText] = useState(""); // State pentru textul nou al sarcinii
+    const appRef = useRef(null);
 
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+        const interval = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000); // Actualizează la fiecare secundă
+
+        return () => clearInterval(interval); // Curățare la unmount
+    }, []);
+
+    useEffect(() => {
+        gsap.from(appRef.current, {
+            duration: 1.5,
+            opacity: 0,
+            y: 50,
+            ease: "power3.out",
+        });
+    }, []);
+
+    const addTask = () => {
+        if (newTaskText.trim() !== "") {
+            const newTask = {
+                id: idCounter++, // Generare id unic
+                text: newTaskText,
+                completed: false,
+                date: new Date().toLocaleString(),
+            };
+            setTasks([...tasks, newTask]);
+            setNewTaskText(""); // Resetează inputul
+        }
+    };
+
+    // Gestionarea tastelor pentru adăugarea sarcinii
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            addTask(); // Apelează funcția de adăugare
+        }
+    };
 
     return (
-        <div className="App">
+        <div className="App" ref={appRef}>
             <h1>To-Do List</h1>
+            <p>Ora curentă: {currentTime.toLocaleTimeString()}</p> {/* Afișează timpul */}
             <input
                 type="text"
+                value={newTaskText}
+                onChange={(e) => setNewTaskText(e.target.value)}
+                onKeyDown={handleKeyDown} // Ascultă apăsarea tastei
                 placeholder="Adaugă o sarcină"
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        addTask(e.target.value);
-                        e.target.value = "";
-                    }
-                }}
             />
-            <ToDoList
-                items={tasks}
-                removeTask={removeTask}
-                toggleCompleteTask={toggleCompleteTask}
-            />
+            <button onClick={addTask}>Adaugă</button>
+            <ToDoList tasks={tasks} setTasks={setTasks} />
         </div>
     );
 }

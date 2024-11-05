@@ -1,0 +1,6 @@
+/* src/components/to_do_list/ToDoList.css */
+ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
