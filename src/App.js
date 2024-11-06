@@ -1,111 +1,142 @@
 // src/App.js
-import React, { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import ToDoList from "./components/to_do_list/ToDoList"; // Asigură-te că calea este corectă
+import React, { useState } from "react";
+import ToDoList from "./components/to_do_list/ToDoList";
+import Login from "./components/login/Login";
 import "./App.css";
 
-let idCounter = 0; // Un contor pentru generarea id-urilor unice
+let idCounter = 0;
 
 function App() {
     const [tasks, setTasks] = useState([]);
-    const [currentTime, setCurrentTime] = useState(new Date());
     const [newTaskText, setNewTaskText] = useState(""); // State pentru textul nou al sarcinii
-    const [selectedCategory, setSelectedCategory] = useState("All"); // State pentru categoria selectată
-    const [dueDate, setDueDate] = useState(""); // State pentru data limită
-    const [priority, setPriority] = useState("Medium"); // State pentru prioritate
-    const appRef = useRef(null);
+    const [newTaskType, setNewTaskType] = useState(""); // State pentru tipul sarcinii
+    const [newTaskDeadline, setNewTaskDeadline] = useState(""); // State pentru data limita
+    const [newTaskPriority, setNewTaskPriority] = useState("Medium"); // State pentru prioritate
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000); // Actualizează la fiecare secundă
+    const [sortOrder, setSortOrder] = useState({
+        byDate: "none", // none, ascending, descending
+        byPriority: "none", // none, ascending, descending
+        byType: "none", // none, ascending, descending
+    });
 
-        return () => clearInterval(interval); // Curățare la unmount
-    }, []);
-
-    useEffect(() => {
-        gsap.from(appRef.current, {
-            duration: 1.5,
-            opacity: 0,
-            y: 50,
-            ease: "power3.out",
-        });
-    }, []);
+    const handleLogin = () => {
+        setIsAuthenticated(true);
+    };
 
     const addTask = () => {
         if (newTaskText.trim() !== "") {
             const newTask = {
-                id: idCounter++, // Generare id unic
+                id: idCounter++,
                 text: newTaskText,
+                taskType: newTaskType,
+                deadline: newTaskDeadline,
+                priority: newTaskPriority,
                 completed: false,
-                category: selectedCategory, // Setăm categoria sarcinii
                 date: new Date().toLocaleString(),
-                dueDate: dueDate, // Data limită
-                priority: priority, // Prioritatea sarcinii
             };
             setTasks([...tasks, newTask]);
-            setNewTaskText(""); // Resetează inputul
-            setDueDate(""); // Resetează data limită
-            setPriority("Medium"); // Resetează prioritatea
+            setNewTaskText("");
+            setNewTaskType("");
+            setNewTaskDeadline("");
+            setNewTaskPriority("Medium");
         }
     };
 
-    // Gestionarea tastelor pentru adăugarea sarcinii
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            addTask(); // Apelează funcția de adăugare
-        }
+    const sortTasksByDate = () => {
+        const newSortOrder = sortOrder.byDate === "ascending" ? "descending" : "ascending";
+        setSortOrder({ ...sortOrder, byDate: newSortOrder });
+
+        const sortedTasks = [...tasks].sort((a, b) => {
+            const dateA = new Date(a.deadline);
+            const dateB = new Date(b.deadline);
+
+            return newSortOrder === "ascending"
+                ? dateA - dateB
+                : dateB - dateA;
+        });
+
+        setTasks(sortedTasks);
     };
 
-    // Funcție pentru a filtra sarcinile pe bază de categorie
-    const filteredTasks = selectedCategory === "All"
-        ? tasks
-        : tasks.filter(task => task.category === selectedCategory);
+    const sortTasksByPriority = () => {
+        const newSortOrder = sortOrder.byPriority === "ascending" ? "descending" : "ascending";
+        setSortOrder({ ...sortOrder, byPriority: newSortOrder });
+
+        const priorityOrder = { Low: 1, Medium: 2, High: 3 };
+
+        const sortedTasks = [...tasks].sort((a, b) => {
+            return newSortOrder === "ascending"
+                ? priorityOrder[a.priority] - priorityOrder[b.priority]
+                : priorityOrder[b.priority] - priorityOrder[a.priority];
+        });
+
+        setTasks(sortedTasks);
+    };
+
+    const sortTasksByType = () => {
+        const newSortOrder = sortOrder.byType === "ascending" ? "descending" : "ascending";
+        setSortOrder({ ...sortOrder, byType: newSortOrder });
+
+        const sortedTasks = [...tasks].sort((a, b) => {
+            return newSortOrder === "ascending"
+                ? a.taskType.localeCompare(b.taskType)
+                : b.taskType.localeCompare(a.taskType);
+        });
+
+        setTasks(sortedTasks);
+    };
+
+    if (!isAuthenticated) {
+        return <Login onLogin={handleLogin} />;
+    }
 
     return (
-        <div className="App" ref={appRef}>
+        <div className="App">
             <h1>To-Do List</h1>
-            <p>Ora curentă: {currentTime.toLocaleTimeString()}</p> {/* Afișează timpul */}
             <input
                 type="text"
                 value={newTaskText}
                 onChange={(e) => setNewTaskText(e.target.value)}
-                onKeyDown={handleKeyDown} // Ascultă apăsarea tastei
                 placeholder="Adaugă o sarcină"
             />
-
-            {/* Dropdown pentru a selecta categoria */}
             <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                value={newTaskType}
+                onChange={(e) => setNewTaskType(e.target.value)}
             >
-                <option value="All">Toate</option>
+                <option value="">Alege tipul sarcinii</option>
                 <option value="Personal">Personal</option>
-                <option value="Work">Muncă</option>
-                <option value="Important">Important</option>
+                <option value="Job">Job</option>
+                <option value="Școală">Școală</option>
             </select>
-
-            {/* Input pentru data limită */}
             <input
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
+                type="datetime-local"
+                value={newTaskDeadline}
+                onChange={(e) => setNewTaskDeadline(e.target.value)}
             />
-
-            {/* Dropdown pentru prioritate */}
             <select
-                value={priority}
-                onChange={(e) => setPriority(e.target.value)}
+                value={newTaskPriority}
+                onChange={(e) => setNewTaskPriority(e.target.value)}
             >
-                <option value="Low">Mică</option>
-                <option value="Medium">Mediu</option>
-                <option value="High">Important</option>
+                <option value="Low">Scăzut</option>
+                <option value="Medium">Medie</option>
+                <option value="High">Ridicată</option>
             </select>
-
             <button onClick={addTask}>Adaugă</button>
 
-            {/* Lista de sarcini filtrată */}
-            <ToDoList tasks={filteredTasks} setTasks={setTasks} />
+            <div className="sort-options">
+                <button onClick={sortTasksByDate}>
+                    Sortare după data limită ({sortOrder.byDate})
+                </button>
+                <button onClick={sortTasksByPriority}>
+                    Sortare după prioritate ({sortOrder.byPriority})
+                </button>
+                <button onClick={sortTasksByType}>
+                    Sortare după tipul sarcinii ({sortOrder.byType})
+                </button>
+            </div>
+
+            <ToDoList tasks={tasks} setTasks={setTasks} />
         </div>
     );
 }

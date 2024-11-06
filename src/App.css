@@ -57,3 +57,22 @@ input {
   color: gray;
   background-color: #f0f0f0;
 }
+
+/* Adaugă stiluri pentru butoanele de sortare */
+.sort-options {
+  margin: 20px 0;
+}
+
+.sort-options button {
+  margin-right: 10px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sort-options button:hover {
+  background-color: #45a049;
+}

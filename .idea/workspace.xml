@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95d2ae98-0cc7-466f-b4b5-f14d3587f961" name="Changes" comment="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data">
+    <list default="true" id="95d2ae98-0cc7-466f-b4b5-f14d3587f961" name="Changes" comment="V0.3 = adaugat functionalitati">
+      <change afterPath="$PROJECT_DIR$/src/components/login/Login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/to_do_list/ToDoList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +82,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ibeny\Desktop\HTML\to_do_list\src\components\login" />
       <recent name="C:\Users\ibeny\Desktop\HTML\to_do_list" />
     </key>
   </component>
@@ -154,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730805228288</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="V0.3 = adaugat functionalitati">
+      <option name="closed" value="true" />
+      <created>1730927074683</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730927074683</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +196,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="V1.0 = generat structura proiectului" />
     <MESSAGE value="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.1 = adaugat functionalitatile, add/delete sarcini, adaugare data" />
+    <MESSAGE value="V0.3 = adaugat functionalitati" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0.3 = adaugat functionalitati" />
   </component>
 </project>
